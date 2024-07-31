@@ -1,0 +1,96 @@
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Add Restaurant</h2>
+    <form [formGroup]="addRestaurantForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="gblRestaurantNo">Global Restaurant No:</label>
+        <input id="gblRestaurantNo" formControlName="gbl_restaurant_no" type="number" class="form-control" />
+        <div *ngIf="addRestaurantForm.controls['gbl_restaurant_no'].invalid &&
+                    (addRestaurantForm.controls['gbl_restaurant_no'].dirty ||
+                     addRestaurantForm.controls['gbl_restaurant_no'].touched)">
+          <small class="text-danger">Global Restaurant No is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="restaurantName">Name:</label>
+        <input id="restaurantName" formControlName="restaurant_name" type="text" class="form-control" />
+        <div *ngIf="addRestaurantForm.controls['restaurant_name'].invalid &&
+                    (addRestaurantForm.controls['restaurant_name'].dirty ||
+                     addRestaurantForm.controls['restaurant_name'].touched)">
+          <small class="text-danger">Name is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="restaurantAddress">Address:</label>
+        <input id="restaurantAddress" formControlName="restaurant_address" type="text" class="form-control" />
+        <div *ngIf="addRestaurantForm.controls['restaurant_address'].invalid &&
+                    (addRestaurantForm.controls['restaurant_address'].dirty ||
+                     addRestaurantForm.controls['restaurant_address'].touched)">
+          <small class="text-danger">Address is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="restaurantOwnerId">Owner ID:</label>
+        <input id="restaurantOwnerId" formControlName="restaurant_owner_id" type="number" class="form-control" />
+        <div *ngIf="addRestaurantForm.controls['restaurant_owner_id'].invalid &&
+                    (addRestaurantForm.controls['restaurant_owner_id'].dirty ||
+                     addRestaurantForm.controls['restaurant_owner_id'].touched)">
+          <small class="text-danger">Owner ID is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="restaurantOpenDate">Open Date:</label>
+        <input id="restaurantOpenDate" formControlName="restaurant_open_date" type="date" class="form-control" />
+        <div *ngIf="addRestaurantForm.controls['restaurant_open_date'].invalid &&
+                    (addRestaurantForm.controls['restaurant_open_date'].dirty ||
+                     addRestaurantForm.controls['restaurant_open_date'].touched)">
+          <small class="text-danger">Open Date is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="restaurantCloseDate">Close Date:</label>
+        <input id="restaurantCloseDate" formControlName="restaurant_close_date" type="date" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input id="longitude" formControlName="longitude" type="number" step="any" class="form-control" />
+        <div *ngIf="addRestaurantForm.controls['longitude'].invalid &&
+                    (addRestaurantForm.controls['longitude'].dirty ||
+                     addRestaurantForm.controls['longitude'].touched)">
+          <small class="text-danger">Longitude is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input id="latitude" formControlName="latitude" type="number" step="any" class="form-control" />
+        <div *ngIf="addRestaurantForm.controls['latitude'].invalid &&
+                    (addRestaurantForm.controls['latitude'].dirty ||
+                     addRestaurantForm.controls['latitude'].touched)">
+          <small class="text-danger">Latitude is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="isActive">Active:</label>
+        <select id="isActive" formControlName="is_active" class="form-control">
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+
+      <div *ngIf="validationError" class="alert alert-danger">
+        {{ validationError }}
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="addRestaurantForm.invalid">Add Restaurant</button>
+    </form>
+  </div>
+</div>

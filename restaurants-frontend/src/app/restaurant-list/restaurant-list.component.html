@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Restaurant List
+    <button class="btn btn-primary float-right" (click)="openAddRestaurantModal()">+ Add Restaurant</button>
+  </h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Global Restaurant No</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Owner ID</th>
+        <th>Open Date</th>
+        <th>Close Date</th>
+        <th>Longitude</th>
+        <th>Latitude</th>
+        <th>Active</th>
+        <th>Actions</th> <!-- Add Actions column -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let restaurant of restaurants">
+        <td>{{ restaurant.id }}</td>
+        <td>{{ restaurant.gbl_restaurant_no }}</td>
+        <td>{{ restaurant.restaurant_name }}</td>
+        <td>{{ restaurant.restaurant_address }}</td>
+        <td>{{ restaurant.restaurant_owner_id }}</td>
+        <td>{{ restaurant.restaurant_open_date }}</td>
+        <td>{{ restaurant.restaurant_close_date }}</td>
+        <td>{{ restaurant.longitude }}</td>
+        <td>{{ restaurant.latitude }}</td>
+        <td>{{ restaurant.is_active ? 'Yes' : 'No' }}</td>
+        <td>
+          <button (click)="openEditRestaurantModal(restaurant.id)" class="btn btn-secondary">
+            Edit
+          </button>
+          <button (click)="openDeleteConfirmationModal(restaurant.id)" class="btn btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Add Restaurant Modal -->
+  <app-add-restaurant-modal (restaurantAdded)="loadRestaurants()" #addRestaurantModal></app-add-restaurant-modal>
+
+  <!-- Edit Restaurant Modal -->
+  <app-edit-restaurant-modal #editRestaurantModal></app-edit-restaurant-modal>
+
+  <!-- Delete Confirmation Modal -->
+  <app-delete-confirmation-modal
+    *ngIf="showDeleteConfirmationModal"
+    [restaurantId]="restaurantToDelete"
+    (confirmDelete)="handleConfirmDelete($event)"
+    (cancel)="closeDeleteConfirmationModal()">
+  </app-delete-confirmation-modal>
+</div>
